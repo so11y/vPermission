@@ -1,6 +1,6 @@
 <template>
   <TableSwitch
-    v-hasPermission.link="['merchant:admin:vehicle:dispatchOrgDriver:enable']"
+    v-hasPermission.link="爱上大大"
   />
   <ElButton
     v-hasPermission="['merchant:admin:vehicle:dispatchOrgDriver:add']"

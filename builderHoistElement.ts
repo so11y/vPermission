@@ -23,8 +23,8 @@ export class BuilderHoistElement {
   preHandleNodeString(): [Array<DirectiveNode>, Array<AttributeNode>] {
     const hasPermission = this.helperContext.getHasPermissionDir;
     this.childMs.remove(
-      hasPermission!.loc.start.offset,
-      hasPermission!.loc.end.offset
+      hasPermission!.loc.start.offset - this.child.loc.start.offset,
+      hasPermission!.loc.end.offset - this.child.loc.start.offset
     );
     const dirs = this.helperContext.findNodeDirs();
     const props = this.helperContext.findNodeProps();

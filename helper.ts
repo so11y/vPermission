@@ -70,8 +70,8 @@ export class BuilderHoistElementContextHelper {
     const fallbackProp = findProp(this.bhe.child, "fallback");
     if (fallbackProp) {
       this.bhe.childMs.remove(
-        fallbackProp.loc.start.offset,
-        fallbackProp.loc.end.offset
+        fallbackProp.loc.start.offset - this.bhe.child.loc.start.offset,
+        fallbackProp.loc.end.offset - this.bhe.child.loc.start.offset
       );
       //静态
       if (fallbackProp?.type === 6) {
@@ -100,7 +100,8 @@ export class BuilderHoistElementContextHelper {
         const maybeDir = fn(child, prop, true);
         if (maybeDir) {
           const { loc } = maybeDir;
-          childMs.remove(loc.start.offset, loc.end.offset);
+          const start = child.loc.start.offset;
+          childMs.remove(loc.start.offset - start, loc.end.offset - start);
           return maybeDir;
         }
       })
